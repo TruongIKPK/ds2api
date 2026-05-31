@@ -105,6 +105,8 @@ Gemini-compatible clients can also send `x-goog-api-key`, `?key=`, or `?api_key=
 | --- | --- | --- | --- |
 | GET | `/healthz` | None | Liveness probe |
 | HEAD | `/healthz` | None | Liveness probe (no body) |
+| GET | `/health` | None | Liveness probe (`/healthz` alias for Render and similar platforms) |
+| HEAD | `/health` | None | Liveness probe (no body) |
 | GET | `/readyz` | None | Readiness probe |
 | HEAD | `/readyz` | None | Readiness probe (no body) |
 | GET | `/v1/models` | None | OpenAI model list |
@@ -185,6 +187,8 @@ OpenAI `/v1/*` paths are canonical. For clients configured with the bare DS2API 
 ```json
 {"status": "ok"}
 ```
+
+`/health` is an alias of `/healthz` with the same behavior for `GET` and `HEAD`.
 
 ### `GET /readyz`
 

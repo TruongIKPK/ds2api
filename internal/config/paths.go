@@ -6,12 +6,16 @@ import (
 	"strings"
 )
 
-func BaseDir() string {
+var baseDirFunc = func() string {
 	cwd, err := os.Getwd()
 	if err != nil {
 		return "."
 	}
 	return cwd
+}
+
+func BaseDir() string {
+	return baseDirFunc()
 }
 
 func IsVercel() bool {

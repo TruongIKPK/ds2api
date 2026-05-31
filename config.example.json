@@ -22,19 +22,8 @@
       "_comment": "邮箱登录方式",
       "name": "主账号",
       "remark": "优先用于生产流量",
-      "email": "example1@example.com",
-      "password": "your-password-1"
-    },
-    {
-      "_comment": "邮箱登录方式 - 账号2",
-      "name": "备用账号",
-      "email": "example2@example.com",
-      "password": "your-password-2"
-    },
-    {
-      "_comment": "手机号登录方式（中国大陆）",
-      "mobile": "12345678901",
-      "password": "your-password-3"
+      "email": "ecommerce.truong.0374425749@gmail.com",
+      "password": "Trewq12345@"
     }
   ],
   "model_aliases": {

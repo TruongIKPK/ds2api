@@ -81,18 +81,24 @@ func NewApp() (*App, error) {
 	r.Use(requestbody.ValidateJSONUTF8)
 	r.Use(timeout(0))
 
-	healthzHandler := func(w http.ResponseWriter, _ *http.Request) {
+	healthzHandler := func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		_, _ = w.Write([]byte(`{"status":"ok"}`))
+		if r.Method != http.MethodHead {
+			_, _ = w.Write([]byte(`{"status":"ok"}`))
+		}
 	}
-	readyzHandler := func(w http.ResponseWriter, _ *http.Request) {
+	readyzHandler := func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		_, _ = w.Write([]byte(`{"status":"ready"}`))
+		if r.Method != http.MethodHead {
+			_, _ = w.Write([]byte(`{"status":"ready"}`))
+		}
 	}
 	r.Get("/healthz", healthzHandler)
 	r.Head("/healthz", healthzHandler)
+	r.Get("/health", healthzHandler)
+	r.Head("/health", healthzHandler)
 	r.Get("/readyz", readyzHandler)
 	r.Head("/readyz", readyzHandler)
 	r.Get("/v1/models", modelsHandler.ListModels)

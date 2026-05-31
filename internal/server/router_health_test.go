@@ -15,7 +15,7 @@ func TestHealthEndpointsSupportHEAD(t *testing.T) {
 		t.Fatalf("NewApp() error: %v", err)
 	}
 
-	for _, path := range []string{"/healthz", "/readyz"} {
+	for _, path := range []string{"/healthz", "/health", "/readyz"} {
 		req := httptest.NewRequest(http.MethodHead, path, nil)
 		rec := httptest.NewRecorder()
 		app.Router.ServeHTTP(rec, req)
